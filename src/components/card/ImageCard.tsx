@@ -1,17 +1,5 @@
-import { IconEye, IconMessageCircle } from "@tabler/icons";
-import {
-  Card,
-  Text,
-  Group,
-  Center,
-  createStyles,
-  Image,
-  Stack,
-  Divider,
-} from "@mantine/core";
-import { Button } from "@mantine/core";
-import { IconExternalLink } from "@tabler/icons";
-import { Link, useNavigate } from "react-router-dom";
+import { Card, createStyles, Divider, Group, Text } from "@mantine/core";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = createStyles((theme, _params, getRef) => {
   const image = getRef("image");

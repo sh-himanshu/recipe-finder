@@ -1,12 +1,13 @@
-import { LoadingOverlay, SimpleGrid, Stack } from "@mantine/core";
+import { SimpleGrid, Stack } from "@mantine/core";
 import { useDebouncedState } from "@mantine/hooks";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ImageCard from "../components/card/ImageCard";
 import Error from "../components/error/Error";
 import Layout from "../components/layout/Layout";
+import Loading from "../components/loader/Loading";
 import Filters from "../components/search-bar/Filters";
 import { SearchBar } from "../components/search-bar/SearchBar";
 import { SearchData } from "../types";
@@ -35,21 +36,12 @@ const Search = () => {
   return (
     <Layout
       header={
-        <Stack
-          justify="flex-start"
-          spacing="md"
-          // sx={(theme) => ({
-          //   backgroundColor:
-          //     theme.colorScheme === "dark"
-          //       \? theme.colors.dark[8]
-          //       : theme.colors.gray[0],
-          //   height: 300,
-          // })}
-        >
+        <Stack justify="flex-start" spacing="md">
           <SearchBar onKeyUp={handleKeyUp} />
         </Stack>
       }
     >
+      {isLoading && <Loading />}
       {error ? (
         <Error />
       ) : (

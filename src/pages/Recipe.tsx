@@ -6,7 +6,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import DetailedCard from "../components/card/DetailedCard";
 import Error from "../components/error/Error";
 import Layout from "../components/layout/Layout";
-import type { RecipeData } from "../types";
+import Loading from "../components/loader/Loading";
+import { RecipeData } from "../types";
 
 const Recipe = () => {
   let { recipeUri } = useParams();
@@ -18,7 +19,6 @@ const Recipe = () => {
       )
       .then((res) => res.data[0])
   );
-  if (isLoading) return <div>Loading...</div>;
 
   return (
     <Layout
@@ -45,6 +45,7 @@ const Recipe = () => {
         </Box>
       }
     >
+      {isLoading && <Loading />}
       {error || (data && !data.image) ? (
         <Error />
       ) : (

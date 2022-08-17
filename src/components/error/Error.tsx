@@ -1,11 +1,10 @@
 import {
+  Container,
   createStyles,
   Image,
-  Container,
-  Title,
-  Text,
-  Button,
   SimpleGrid,
+  Text,
+  Title,
 } from "@mantine/core";
 import image from "../../assets/404.svg";
 
