@@ -1,5 +1,8 @@
 import { AppShell, Container, Header } from "@mantine/core";
 import { ReactNode } from "react";
+import { IconArrowUp } from "@tabler/icons";
+import { useWindowScroll } from "@mantine/hooks";
+import { Affix, Button, Text, Transition } from "@mantine/core";
 
 interface LayoutProps {
   header: ReactNode;
@@ -7,6 +10,7 @@ interface LayoutProps {
 }
 
 const Layout = ({ header, children }: LayoutProps) => {
+  const [scroll, scrollTo] = useWindowScroll();
   return (
     <AppShell
       padding="md"
@@ -25,6 +29,19 @@ const Layout = ({ header, children }: LayoutProps) => {
       })}
     >
       {children}
+      <Affix position={{ bottom: 20, right: 20 }}>
+        <Transition transition="slide-up" mounted={scroll.y > 0}>
+          {(transitionStyles) => (
+            <Button
+              leftIcon={<IconArrowUp size={16} />}
+              style={transitionStyles}
+              onClick={() => scrollTo({ y: 0 })}
+            >
+              Scroll to top
+            </Button>
+          )}
+        </Transition>
+      </Affix>
     </AppShell>
   );
 };
